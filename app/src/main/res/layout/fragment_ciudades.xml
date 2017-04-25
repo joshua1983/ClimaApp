@@ -7,21 +7,12 @@
     android:layout_height="match_parent"
     tools:context="josue.climaapp.OpcionCiudades">
 
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/card2"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_lista_ciudades"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        card_view:cardBackgroundColor="#fffffe91" >
+        android:layout_height="match_parent" />
 
-        <TextView
-            android:id="@+id/txt1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/titulo_ciudad" />
 
-    </android.support.v7.widget.CardView>
 
 
 </FrameLayout>

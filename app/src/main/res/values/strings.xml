@@ -4,5 +4,6 @@
     <string name="city_list_string">City List</string>
     <string name="about_string">About</string>
 
-    <string name="titulo_ciudad">Ciudad</string>
+    <string name="titulo_ciudad">City name</string>
+    <string name="titulo_temperatura">Weather</string>
 </resources>
