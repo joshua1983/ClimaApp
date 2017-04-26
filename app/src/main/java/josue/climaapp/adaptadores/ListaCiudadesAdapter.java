@@ -16,9 +16,11 @@ import josue.climaapp.modelos.Ciudad;
  * Created by josue on 4/25/17.
  */
 
-public class ListaCiudadesAdapter extends RecyclerView.Adapter<ListaCiudadesAdapter.ContenidoTarjetaHolder> {
+public class ListaCiudadesAdapter extends RecyclerView.Adapter<ListaCiudadesAdapter.ContenidoTarjetaHolder>
+    implements View.OnClickListener{
 
     private ArrayList<Ciudad> datos;
+    private View.OnClickListener listener;
 
     public ListaCiudadesAdapter(ArrayList<Ciudad> _ciudades){
         this.datos = _ciudades;
@@ -28,7 +30,9 @@ public class ListaCiudadesAdapter extends RecyclerView.Adapter<ListaCiudadesAdap
     public ContenidoTarjetaHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.tarjeta_city, parent, false);
+        itemView.setOnClickListener(this);
         ContenidoTarjetaHolder cth = new ContenidoTarjetaHolder(itemView);
+
         return cth;
     }
 
@@ -38,10 +42,21 @@ public class ListaCiudadesAdapter extends RecyclerView.Adapter<ListaCiudadesAdap
         holder.bindCiudad(_ciudad);
     }
 
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+
 
     @Override
     public int getItemCount() {
         return datos.size();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (listener != null){
+            listener.onClick(view);
+        }
     }
 
     public static  class ContenidoTarjetaHolder extends ViewHolder{

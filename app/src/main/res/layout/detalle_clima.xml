@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/label_ciudad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_ciudad" />
+
+            <TextView
+                android:id="@+id/detalle_nombre_ciudad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp" >
+
+            <TextView
+                android:id="@+id/label_temperatura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_temperatura" />
+
+            <TextView
+                android:id="@+id/detalle_temperatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp" >
+
+            <TextView
+                android:id="@+id/label_descripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_descripcion" />
+
+            <TextView
+                android:id="@+id/detalle_descripcion_clima"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp" >
+
+            <TextView
+                android:id="@+id/label_viento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_velocidad" />
+
+            <TextView
+                android:id="@+id/detalle_viento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp" >
+
+            <TextView
+                android:id="@+id/label_humedad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_humedad" />
+
+            <TextView
+                android:id="@+id/detalle_humedad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

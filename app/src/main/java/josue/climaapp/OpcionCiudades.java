@@ -1,10 +1,12 @@
 package josue.climaapp;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 
 import josue.climaapp.adaptadores.ListaCiudadesAdapter;
 import josue.climaapp.modelos.Ciudad;
+import josue.climaapp.modelos.ListadoCiudades;
 
 /**
  * Created by josue on 4/25/17.
@@ -44,9 +47,8 @@ public class OpcionCiudades extends Fragment {
     }
 
     public void cargarCiudades(){
-        for (int i=0; i<10; i++){
-            datos.add(new Ciudad("ciudad "+i, "temperatura "+i));
-        }
+        ListadoCiudades ciudades = ListadoCiudades.getInstancia();
+        datos = ciudades.getCiudades();
     }
 
     @Override
@@ -67,6 +69,23 @@ public class OpcionCiudades extends Fragment {
         recView.setHasFixedSize(true);
 
         final ListaCiudadesAdapter adaptador_ciudades = new ListaCiudadesAdapter(datos);
+        adaptador_ciudades.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+
+                DetalleClima detalle = new DetalleClima();
+                Bundle argumentos = new Bundle();
+                argumentos.putInt("indice",recView.getChildAdapterPosition(view));
+                detalle.setArguments(argumentos);
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content_frame, detalle, null)
+                        .addToBackStack(null)
+                        .commit();
+
+            }
+        });
         recView.setAdapter(adaptador_ciudades);
         recView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
 

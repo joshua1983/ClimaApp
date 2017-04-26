@@ -6,4 +6,7 @@
 
     <string name="titulo_ciudad">City name</string>
     <string name="titulo_temperatura">Weather</string>
+    <string name="titulo_descripcion">Description</string>
+    <string name="titulo_humedad">Humidity</string>
+    <string name="titulo_velocidad">Wind Speed</string>
 </resources>
