@@ -5,6 +5,7 @@ package josue.climaapp.modelos;
  */
 
 public class Ciudad {
+    private String id = "";
     private String nombre = "";
     private String temperatura = "";
     private String descripcion = "";
@@ -16,6 +17,9 @@ public class Ciudad {
         this.setTemperatura(temperatura);
     }
 
+    public Ciudad(String id){
+        this.setId(id);
+    }
 
     public String getNombre() {
         return nombre;
@@ -55,5 +59,13 @@ public class Ciudad {
 
     public void setVelocidad_viento(String velocidad_viento) {
         this.velocidad_viento = velocidad_viento;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

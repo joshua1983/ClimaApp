@@ -22,9 +22,23 @@ public class ListadoCiudades {
     }
 
     private void loadData(){
-        for (int i=0; i<10; i++){
-            datos.add(new Ciudad("ciudad "+i, "temperatura "+i));
-        }
+
+        // Bogota
+        Ciudad ciudad = new Ciudad("3688685");
+        ciudad.setNombre("Bogota");
+        datos.add(ciudad);
+
+        // Medellin
+        ciudad = new Ciudad("3674962");
+        ciudad.setNombre("Medellin");
+        datos.add(ciudad);
+
+        // Barranquilla
+        ciudad = new Ciudad("3689147");
+        ciudad.setNombre("Barranquilla");
+        datos.add(ciudad);
+
+
     }
 
     public ArrayList<Ciudad> getCiudades(){
