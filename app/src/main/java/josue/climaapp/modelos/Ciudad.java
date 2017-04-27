@@ -12,10 +12,6 @@ public class Ciudad {
     private String humedad = "";
     private String velocidad_viento = "";
 
-    public Ciudad(String nombre, String temperatura){
-        this.setNombre(nombre);
-        this.setTemperatura(temperatura);
-    }
 
     public Ciudad(String id){
         this.setId(id);

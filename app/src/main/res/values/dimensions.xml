@@ -4,4 +4,9 @@
     <dimen name="margin_detalle_row">10dp</dimen>
     <dimen name="margin_table">10dp</dimen>
     <dimen name="padding_rigth_detalle">10dp</dimen>
+
+    <dimen name="padding_detalle_row_land">5dp</dimen>
+    <dimen name="margin_detalle_row_land">5dp</dimen>
+    <dimen name="margin_table_land">5dp</dimen>
+    <dimen name="padding_rigth_detalle_land">5dp</dimen>
 </resources>

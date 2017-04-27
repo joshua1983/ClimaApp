@@ -32,8 +32,6 @@ import com.google.android.gms.location.LocationServices;
 
 import java.util.List;
 
-import josue.climaapp.modelos.ListadoCiudades;
-
 
 public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
@@ -57,8 +55,6 @@ public class MainActivity extends AppCompatActivity
         /*
         Adquirir ubicacion para listar las ciudades cercanas
          */
-
-
 
         apiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, this)
@@ -108,6 +104,7 @@ public class MainActivity extends AppCompatActivity
                         Bundle argumentos = new Bundle();
                         argumentos.putDouble("lat", ultimaUbicacion.getLatitude());
                         argumentos.putDouble("lng", ultimaUbicacion.getLongitude());
+
                         fragment.setArguments(argumentos);
                         fragmentTransition = true;
                         break;

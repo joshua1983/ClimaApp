@@ -91,11 +91,14 @@ public class ListadoCiudades {
                 JSONObject ciudad = (JSONObject) lista.get(i);
                 JSONObject main = ciudad.getJSONObject("main");
                 JSONObject wind = ciudad.getJSONObject("wind");
+                JSONArray weather = ciudad.getJSONArray("weather");
+                JSONObject clima1 = (JSONObject)weather.get(0);
                 Ciudad city = new Ciudad(String.valueOf(ciudad.getInt("id")));
                 city.setNombre(ciudad.getString("name"));
                 city.setTemperatura(main.getString("temp"));
                 city.setHumedad(main.getString("humidity"));
                 city.setVelocidad_viento(wind.getString("speed"));
+                city.setDescripcion(clima1.getString("description"));
                 datos.add(city);
             }
 

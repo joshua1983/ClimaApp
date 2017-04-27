@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -16,9 +17,13 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -26,6 +31,7 @@ import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -45,6 +51,13 @@ public class OpcionCiudades extends Fragment  {
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     ArrayList<Ciudad> datos = new ArrayList<Ciudad>();
     ProgressDialog dialogo_espere;
+    boolean ORIENTACION_LAND = false;
+
+    TextView txtNombre;
+    TextView txtTemperatura;
+    TextView txtViento;
+    TextView txtHumedad;
+    TextView txtDescripcion;
 
 
     private enum LayoutManagerType {
@@ -87,8 +100,27 @@ public class OpcionCiudades extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        View componentes = inflater.inflate(R.layout.fragment_ciudades, container, false);
-        recView = (RecyclerView) componentes.findViewById(R.id.recycler_lista_ciudades);
+        WindowManager wm = getActivity().getWindowManager();
+        Display pantalla = wm.getDefaultDisplay();
+        View componentes = null;
+
+        if (pantalla.getRotation() == Surface.ROTATION_90){
+            componentes = inflater.inflate(R.layout.fragment_ciudades_land, container, false);
+            recView = (RecyclerView) componentes.findViewById(R.id.recycler_lista_ciudades_land);
+            ORIENTACION_LAND = true;
+
+
+            txtNombre = (TextView) componentes.findViewById(R.id.detalle_nombre_ciudad_land);
+            txtTemperatura = (TextView) componentes.findViewById(R.id.detalle_temperatura_land);
+            txtViento = (TextView) componentes.findViewById(R.id.detalle_viento_land);
+            txtHumedad = (TextView) componentes.findViewById(R.id.detalle_humedad_land);
+            txtDescripcion = (TextView) componentes.findViewById(R.id.detalle_descripcion_clima_land);
+        }else{
+            componentes = inflater.inflate(R.layout.fragment_ciudades, container, false);
+            recView = (RecyclerView) componentes.findViewById(R.id.recycler_lista_ciudades);
+        }
+
+
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
@@ -104,6 +136,13 @@ public class OpcionCiudades extends Fragment  {
         recView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
 
         return componentes;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig){
+        super.onConfigurationChanged(newConfig);
+
+
     }
 
     public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
@@ -168,17 +207,29 @@ public class OpcionCiudades extends Fragment  {
                 @Override
                 public void onClick(View view) {
 
-                    DetalleClima detalle = new DetalleClima();
-                    Bundle argumentos = new Bundle();
-                    argumentos.putInt("indice",recView.getChildAdapterPosition(view));
-                    argumentos.putDouble("lat", LATITUD);
-                    argumentos.putDouble("lng", LONGITUD);
-                    detalle.setArguments(argumentos);
+                    if (ORIENTACION_LAND){
+                        Ciudad city = datos.get(recView.getChildAdapterPosition(view));
 
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, detalle, null)
-                            .addToBackStack(null)
-                            .commit();
+                        txtNombre.setText(city.getNombre());
+                        txtHumedad.setText(city.getHumedad());
+                        txtTemperatura.setText(city.getTemperatura());
+                        txtViento.setText(city.getVelocidad_viento());
+                        txtDescripcion.setText(city.getDescripcion());
+
+                    }else {
+
+                        DetalleClima detalle = new DetalleClima();
+                        Bundle argumentos = new Bundle();
+                        argumentos.putInt("indice", recView.getChildAdapterPosition(view));
+                        argumentos.putDouble("lat", LATITUD);
+                        argumentos.putDouble("lng", LONGITUD);
+                        detalle.setArguments(argumentos);
+
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.content_frame, detalle, null)
+                                .addToBackStack(null)
+                                .commit();
+                    }
 
                 }
             });

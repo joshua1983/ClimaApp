@@ -77,7 +77,6 @@ public class DetalleClima extends Fragment {
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
                         setDatos(response);
-                        Log.i("CLIMA", response);
                         dialogo_espere.dismiss();
                     }
                 }, new Response.ErrorListener() {
@@ -87,10 +86,9 @@ public class DetalleClima extends Fragment {
                 dialogo_espere.dismiss();
             }
         });
-// Add the request to the RequestQueue.
         queue.add(stringRequest);
         dialogo_espere.show();
-        //new TareaWSciudad(dialogo_espere).execute(url);
+
     }
 
 
@@ -117,50 +115,6 @@ public class DetalleClima extends Fragment {
     }
 
 
-    private class TareaWSciudad extends AsyncTask<String, Integer, Boolean>{
-
-        ProgressDialog mensaje;
-
-        public TareaWSciudad(ProgressDialog mensaje){
-            this.mensaje = mensaje;
-        }
-
-        @Override
-        protected void onPreExecute(){
-            mensaje.show();
-        }
-
-        @Override
-        protected void onPostExecute(Boolean result){
-            mensaje.dismiss();
-        }
-
-        @Override
-        protected Boolean doInBackground(String... strings) {
-            boolean result = true;
-
-
-            RequestQueue queue = Volley.newRequestQueue(getContext());
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, strings[0],
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            // Display the first 500 characters of the response string.
-                            setDatos(response);
-                            Log.i("CLIMA", response);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getContext(),error.getLocalizedMessage(), Toast.LENGTH_LONG);
-                    Log.e("CLIMA", error.getMessage());
-                }
-            });
-// Add the request to the RequestQueue.
-            queue.add(stringRequest);
-            return result;
-        }
-    }
 
     private void setDatos(String response) {
         try {
