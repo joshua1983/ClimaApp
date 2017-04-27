@@ -58,7 +58,9 @@ public class DetalleClima extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null){
             int indice = bundle.getInt("indice");
-            ListadoCiudades ciudades = ListadoCiudades.getInstancia();
+            double lat = bundle.getDouble("lat");
+            double lng = bundle.getDouble("lng");
+            ListadoCiudades ciudades = ListadoCiudades.getInstancia(getContext(), lat, lng, 10);
             this.city = ciudades.getCiudad(indice);
             cargarTodosDatos();
         }
@@ -137,7 +139,6 @@ public class DetalleClima extends Fragment {
         protected Boolean doInBackground(String... strings) {
             boolean result = true;
 
-            Log.i("CLIMA", strings[0]);
 
             RequestQueue queue = Volley.newRequestQueue(getContext());
             StringRequest stringRequest = new StringRequest(Request.Method.GET, strings[0],
@@ -177,13 +178,12 @@ public class DetalleClima extends Fragment {
 
             txt_nombre.setText(this.city.getNombre());
             txt_descripcion.setText(this.city.getDescripcion());
-            txt_temperatura.setText(this.city.getTemperatura());
+            txt_temperatura.setText(this.city.getTemperatura() + " Cª");
             txt_humedad.setText(this.city.getHumedad());
             txt_velocidad.setText(this.city.getVelocidad_viento());
 
         } catch (JSONException e) {
             Log.e("CLIMA", e.getMessage());
-
         }
 
     }

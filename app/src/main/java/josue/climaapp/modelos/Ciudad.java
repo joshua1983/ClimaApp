@@ -30,10 +30,15 @@ public class Ciudad {
     }
 
     public String getTemperatura() {
+
         return temperatura;
     }
 
     public void setTemperatura(String temperatura) {
+        if (temperatura != "") {
+            double centigrados = Double.parseDouble(temperatura) - 273.15;
+            temperatura = Double.toString(centigrados);
+        }
         this.temperatura = temperatura;
     }
 

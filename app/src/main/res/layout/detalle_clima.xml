@@ -8,12 +8,14 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp">
+        android:layout_margin="@dimen/margin_table">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp">
+            android:layout_margin="@dimen/margin_detalle_row"
+            android:padding="@dimen/padding_detalle_row"
+            android:paddingRight="@dimen/padding_rigth_detalle">
 
             <TextView
                 android:id="@+id/label_ciudad"
@@ -31,7 +33,9 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp" >
+            android:layout_margin="@dimen/margin_detalle_row"
+            android:padding="@dimen/padding_detalle_row"
+            android:paddingRight="@dimen/padding_rigth_detalle">
 
             <TextView
                 android:id="@+id/label_temperatura"
@@ -49,7 +53,9 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp" >
+            android:layout_margin="@dimen/margin_detalle_row"
+            android:padding="@dimen/padding_detalle_row"
+            android:paddingRight="@dimen/padding_rigth_detalle">
 
             <TextView
                 android:id="@+id/label_descripcion"
@@ -67,7 +73,9 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp" >
+            android:layout_margin="@dimen/margin_detalle_row"
+            android:padding="@dimen/padding_detalle_row"
+            android:paddingRight="@dimen/padding_rigth_detalle">
 
             <TextView
                 android:id="@+id/label_viento"
@@ -85,7 +93,9 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp" >
+            android:layout_margin="@dimen/margin_detalle_row"
+            android:padding="@dimen/padding_detalle_row"
+            android:paddingRight="@dimen/padding_rigth_detalle">
 
             <TextView
                 android:id="@+id/label_humedad"

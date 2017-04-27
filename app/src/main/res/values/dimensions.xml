@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_detalle_row">15dp</dimen>
+    <dimen name="margin_detalle_row">10dp</dimen>
+    <dimen name="margin_table">10dp</dimen>
+    <dimen name="padding_rigth_detalle">10dp</dimen>
+</resources>
